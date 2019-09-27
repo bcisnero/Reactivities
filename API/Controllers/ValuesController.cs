@@ -18,19 +18,9 @@ namespace API.Controllers
         public ValuesController(DataContext context) => _context = context;
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Value>>> Get() 
-        {
-            var values = await _context.Values.ToListAsync();
-
-            return Ok(values);
-
-        }
+        public async Task<ActionResult<IEnumerable<Value>>> Get() => base.Ok(await _context.Values.ToListAsync());
         [HttpGet("{id}")]
-        public async Task<ActionResult<Value>> Get(int id)
-        {
-            var value = await _context.Values.FindAsync(id);
-            return Ok(value);
-        }
+        public async Task<ActionResult<Value>> Get(int id) => base.Ok(await _context.Values.FindAsync(id));
 
     }
 }
