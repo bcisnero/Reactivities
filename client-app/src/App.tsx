@@ -4,17 +4,16 @@ import './App.css';
 import axios from 'axios';
 
 class App extends Component {
-  sate = {
+  state = {
     values: []
-  }
+  };
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/values')
-      .then((response) => {
-        this.setState ({
-          values: response.data
-        })
-      })
+    axios.get('http://localhost:5000/api/values').then(response => {
+      this.setState({
+        values: response.data
+      });
+    });
   }
 
   render() {
@@ -25,10 +24,10 @@ class App extends Component {
               <Header.Content>Reactivities</Header.Content>
             </Header>
             <List>
-              {this.sate.values.map((value: any) => (
-                  <List.Item key={value.id}>{value.name}</List.Item>
-                  ))}
-            </List>
+          {this.state.values.map((value: any) => (
+            <List.Item key={value.id}>{value.name}</List.Item>
+          ))}
+        </List>
         </div>
       );
     }
